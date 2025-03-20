@@ -21,6 +21,7 @@
     <PackageReference Include="DevExpress.ExpressApp.Blazor" Version="24.2.5" />
     <PackageReference Include="DevExpress.ExpressApp.CodeAnalysis" Version="24.2.5" />
     <PackageReference Include="DevExpress.ExpressApp.Validation.Blazor" Version="24.2.5" />
+    <PackageReference Include="OpenTelemetry.Instrumentation.EntityFrameworkCore" Version="1.11.0-beta.2" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\XafAspireDemo.Module\XafAspireDemo.Module.csproj" />
