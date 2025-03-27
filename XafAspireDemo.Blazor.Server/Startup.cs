@@ -33,6 +33,17 @@ public class Startup
             builder.AddEntityFrameworkCoreInstrumentation();
         });
 
+        var telemetry = new Telemetry();
+        services.AddSingleton(telemetry);
+
+        services
+            .AddOpenTelemetry()
+            .WithTracing(tracing => tracing.AddSource("XafAspireDemo.Blazor.Server"))
+            .WithMetrics(metrics =>
+            {
+                metrics.AddMeter(telemetry.MeterName);
+            });
+
         services.AddSingleton(
             typeof(Microsoft.AspNetCore.SignalR.HubConnectionHandler<>),
             typeof(ProxyHubConnectionHandler<>)
