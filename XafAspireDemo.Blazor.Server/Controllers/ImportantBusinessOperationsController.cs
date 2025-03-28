@@ -50,8 +50,6 @@ namespace XafAspireDemo.Blazor.Server.Controllers
                 ILogger<ImportantBusinessOperationsController>
             >();
 
-            // This is where we perform the magic for the important business action.
-
             importantBusinessAction.Enabled["ImportantBusinessActionRunning"] = false;
 
             using var activity = telemetry.ActivitySource.StartActivity("ImportantBusinessAction");
@@ -59,6 +57,7 @@ namespace XafAspireDemo.Blazor.Server.Controllers
 
             try
             {
+                // This is where we perform the magic for the important business action.
                 // Run a task that waits a random time between half a second and five seconds.
                 await Task.Run(() =>
                 {
@@ -78,7 +77,7 @@ namespace XafAspireDemo.Blazor.Server.Controllers
 
                 importantBusinessAction.Enabled["ImportantBusinessActionRunning"] = true;
 
-                // And then we use the meter to count the number of times we've done that.
+                // And then we use the meters to count the number of times we've done that, and how long it took
                 telemetry.ImportantBusinessOperationCounter.Add(1);
                 telemetry.ImportantBusinessOperationDuration.Record(
                     activity.Duration.TotalMilliseconds
