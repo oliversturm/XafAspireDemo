@@ -77,13 +77,11 @@ public class Startup
                             // Do not use this code in production environment to avoid data loss.
                             // We recommend that you refer to the following help topic before you use an in-memory database: https://docs.microsoft.com/en-us/ef/core/testing/in-memory
                             //options.UseInMemoryDatabase("InMemory");
-                            string connectionString = null;
-                            if (Configuration.GetConnectionString("ConnectionString") != null)
-                            {
-                                connectionString = Configuration.GetConnectionString(
-                                    "ConnectionString"
-                                );
-                            }
+
+                            // The environment variable is published by the Aspire Host
+                            string connectionString = 
+                                Environment.GetEnvironmentVariable("ConnectionStrings__XafAspireDemoDb");
+
 #if EASYTEST
                             if (
                                 Configuration.GetConnectionString("EasyTestConnectionString")
