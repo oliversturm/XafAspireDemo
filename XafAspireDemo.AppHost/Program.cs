@@ -7,6 +7,7 @@ var db = sql.AddDatabase("XafAspireDemoDb");
 
 builder
     .AddProject<Projects.XafAspireDemo_Blazor_Server>("xafaspiredemo-blazor-server")
+    .WithEnvironment("ASPIRE_DEBUG", "true")
     .WithHttpsEndpoint()
     .WithReference(db)
     .WaitFor(db);
