@@ -82,8 +82,9 @@ public class Startup
                             //options.UseInMemoryDatabase("InMemory");
 
                             // The environment variable is published by the Aspire Host
-                            string connectionString = 
-                                Environment.GetEnvironmentVariable("ConnectionStrings__XafAspireDemoDb");
+                            string connectionString = Environment.GetEnvironmentVariable(
+                                "ConnectionStrings__XafAspireDemoDb"
+                            );
 
 #if EASYTEST
                             if (

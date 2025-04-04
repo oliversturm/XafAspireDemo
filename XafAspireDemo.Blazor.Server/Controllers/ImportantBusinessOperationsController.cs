@@ -68,12 +68,17 @@ namespace XafAspireDemo.Blazor.Server.Controllers
                 {
                     Thread.Sleep(new Random().Next(500, 5000));
                 });
-                
+
                 // Call the demo service endpoint to get an important business value
                 var httpClientFactory = serviceProvider.GetRequiredService<IHttpClientFactory>();
                 var httpClient = httpClientFactory.CreateClient();
-                var response = await httpClient.GetFromJsonAsync<ImportantBusinessValueResponse>("https://demoservice/important-business-value");
-                logger.LogInformation("Received important business value from service: {ImportantBusinessValue}", response?.ImportantBusinessValue);
+                var response = await httpClient.GetFromJsonAsync<ImportantBusinessValueResponse>(
+                    "https://demoservice/important-business-value"
+                );
+                logger.LogInformation(
+                    "Received important business value from service: {ImportantBusinessValue}",
+                    response?.ImportantBusinessValue
+                );
             }
             catch (Exception ex)
             {

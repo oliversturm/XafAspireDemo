@@ -11,10 +11,7 @@ namespace XafAspireDemo.DemoService
         public Counter<long> ImportantBusinessValueRetrievalCounter { get; }
         public Histogram<double> ImportantBusinessValueRetrievalDuration { get; }
 
-        public Telemetry(
-            string serviceName = "XafAspireDemo.DemoService",
-            string version = "1.0.0"
-        )
+        public Telemetry(string serviceName = "XafAspireDemo.DemoService", string version = "1.0.0")
         {
             ActivitySource = new ActivitySource(serviceName, version);
             Meter = new Meter(serviceName, version);
