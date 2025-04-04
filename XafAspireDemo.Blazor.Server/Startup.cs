@@ -1,4 +1,4 @@
-﻿using DevExpress.ExpressApp.ApplicationBuilder;
+using DevExpress.ExpressApp.ApplicationBuilder;
 using DevExpress.ExpressApp.Blazor.ApplicationBuilder;
 using DevExpress.ExpressApp.Blazor.Services;
 using DevExpress.Persistent.Base;
@@ -28,10 +28,24 @@ public class Startup
         services.AddAspireServiceDefaults();
         services.ConfigureOpenTelemetry(Configuration, WebHostEnvironment);
 
+        // Add HttpClient for calling the DemoService
+        services.AddHttpClient();
+
         services.ConfigureOpenTelemetryTracerProvider(builder =>
         {
             builder.AddEntityFrameworkCoreInstrumentation();
         });
+
+        var telemetry = new Telemetry();
+        services.AddSingleton(telemetry);
+
+        services
+            .AddOpenTelemetry()
+            .WithTracing(tracing => tracing.AddSource("XafAspireDemo.Blazor.Server"))
+            .WithMetrics(metrics =>
+            {
+                metrics.AddMeter(telemetry.MeterName);
+            });
 
         services.AddSingleton(
             typeof(Microsoft.AspNetCore.SignalR.HubConnectionHandler<>),
@@ -66,13 +80,12 @@ public class Startup
                             // Do not use this code in production environment to avoid data loss.
                             // We recommend that you refer to the following help topic before you use an in-memory database: https://docs.microsoft.com/en-us/ef/core/testing/in-memory
                             //options.UseInMemoryDatabase("InMemory");
-                            string connectionString = null;
-                            if (Configuration.GetConnectionString("ConnectionString") != null)
-                            {
-                                connectionString = Configuration.GetConnectionString(
-                                    "ConnectionString"
-                                );
-                            }
+
+                            // The environment variable is published by the Aspire Host
+                            string connectionString = Environment.GetEnvironmentVariable(
+                                "ConnectionStrings__XafAspireDemoDb"
+                            );
+
 #if EASYTEST
                             if (
                                 Configuration.GetConnectionString("EasyTestConnectionString")

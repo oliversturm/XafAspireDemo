@@ -27,7 +27,7 @@ public class XafAspireDemoBlazorApplication : BlazorApplication {
         e.Updater.Update();
         e.Handled = true;
 #else
-        if(System.Diagnostics.Debugger.IsAttached) {
+        if(Environment.GetEnvironmentVariable("ASPIRE_DEBUG") != null || System.Diagnostics.Debugger.IsAttached) {
             e.Updater.Update();
             e.Handled = true;
         }

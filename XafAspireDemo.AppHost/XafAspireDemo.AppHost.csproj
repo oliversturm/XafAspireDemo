@@ -13,10 +13,12 @@
 
   <ItemGroup>
     <PackageReference Include="Aspire.Hosting.AppHost" Version="9.1.0" />
+    <PackageReference Include="Aspire.Hosting.SqlServer" Version="9.1.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\XafAspireDemo.Blazor.Server\XafAspireDemo.Blazor.Server.csproj" />
+    <ProjectReference Include="..\XAFAspireDemo.DemoService\XAFAspireDemo.DemoService.csproj" />
   </ItemGroup>
 
 </Project>
