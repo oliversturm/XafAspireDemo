@@ -1,4 +1,4 @@
-﻿using DevExpress.ExpressApp.ApplicationBuilder;
+using DevExpress.ExpressApp.ApplicationBuilder;
 using DevExpress.ExpressApp.Blazor.ApplicationBuilder;
 using DevExpress.ExpressApp.Blazor.Services;
 using DevExpress.Persistent.Base;
@@ -27,6 +27,9 @@ public class Startup
     {
         services.AddAspireServiceDefaults();
         services.ConfigureOpenTelemetry(Configuration, WebHostEnvironment);
+
+        // Add HttpClient for calling the DemoService
+        services.AddHttpClient();
 
         services.ConfigureOpenTelemetryTracerProvider(builder =>
         {

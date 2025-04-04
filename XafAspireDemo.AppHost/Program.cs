@@ -5,11 +5,16 @@ var sql = builder.AddSqlServer("sql")
 
 var db = sql.AddDatabase("XafAspireDemoDb");
 
+var demoService = builder
+    .AddProject<Projects.XAFAspireDemo_DemoService>("demoservice")
+    .WithHttpsEndpoint();
+
 builder
     .AddProject<Projects.XafAspireDemo_Blazor_Server>("xafaspiredemo-blazor-server")
     .WithEnvironment("ASPIRE_DEBUG", "true")
     .WithHttpsEndpoint()
     .WithReference(db)
+    .WithReference(demoService)
     .WaitFor(db);
 
 builder.Build().Run();

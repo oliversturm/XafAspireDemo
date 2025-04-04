@@ -18,6 +18,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\XafAspireDemo.Blazor.Server\XafAspireDemo.Blazor.Server.csproj" />
+    <ProjectReference Include="..\XAFAspireDemo.DemoService\XAFAspireDemo.DemoService.csproj" />
   </ItemGroup>
 
 </Project>

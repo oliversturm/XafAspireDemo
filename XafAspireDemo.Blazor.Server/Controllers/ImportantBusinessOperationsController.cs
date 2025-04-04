@@ -1,8 +1,13 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Net.Http;
+using System.Net.Http.Json;
 using System.Text;
+using System.Text.Json.Serialization;
+using System.Threading;
+using System.Threading.Tasks;
 using DevExpress.Data.Filtering;
 using DevExpress.ExpressApp;
 using DevExpress.ExpressApp.Actions;
@@ -20,8 +25,8 @@ namespace XafAspireDemo.Blazor.Server.Controllers
 {
     public partial class ImportantBusinessOperationsController : Controller
     {
-        SimpleAction importantBusinessAction;
-        IServiceProvider serviceProvider;
+        readonly SimpleAction importantBusinessAction;
+        readonly IServiceProvider serviceProvider;
 
         public ImportantBusinessOperationsController()
         {
@@ -63,6 +68,12 @@ namespace XafAspireDemo.Blazor.Server.Controllers
                 {
                     Thread.Sleep(new Random().Next(500, 5000));
                 });
+                
+                // Call the demo service endpoint to get an important business value
+                var httpClientFactory = serviceProvider.GetRequiredService<IHttpClientFactory>();
+                var httpClient = httpClientFactory.CreateClient();
+                var response = await httpClient.GetFromJsonAsync<ImportantBusinessValueResponse>("https://demoservice/important-business-value");
+                logger.LogInformation("Received important business value from service: {ImportantBusinessValue}", response?.ImportantBusinessValue);
             }
             catch (Exception ex)
             {
@@ -104,5 +115,12 @@ namespace XafAspireDemo.Blazor.Server.Controllers
 
             base.OnDeactivated();
         }
+    }
+
+    // Response model for the important business value endpoint
+    public class ImportantBusinessValueResponse
+    {
+        [JsonPropertyName("importantBusinessValue")]
+        public int ImportantBusinessValue { get; set; }
     }
 }

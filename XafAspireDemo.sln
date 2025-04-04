@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XafAspireDemo.AppHost", "Xa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XafAspireDemo.ServiceDefaults", "XafAspireDemo.ServiceDefaults\XafAspireDemo.ServiceDefaults.csproj", "{45BFEC68-F2EE-B363-347F-47E3C5D5CF29}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XAFAspireDemo.DemoService", "XAFAspireDemo.DemoService\XAFAspireDemo.DemoService.csproj", "{734681CE-E311-4E8F-AF4C-E4AA3881CA48}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -42,6 +44,12 @@ Global
 		{45BFEC68-F2EE-B363-347F-47E3C5D5CF29}.EasyTest|Any CPU.Build.0 = Release|Any CPU
 		{45BFEC68-F2EE-B363-347F-47E3C5D5CF29}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{45BFEC68-F2EE-B363-347F-47E3C5D5CF29}.Release|Any CPU.Build.0 = Release|Any CPU
+		{734681CE-E311-4E8F-AF4C-E4AA3881CA48}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{734681CE-E311-4E8F-AF4C-E4AA3881CA48}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{734681CE-E311-4E8F-AF4C-E4AA3881CA48}.EasyTest|Any CPU.ActiveCfg = Debug|Any CPU
+		{734681CE-E311-4E8F-AF4C-E4AA3881CA48}.EasyTest|Any CPU.Build.0 = Debug|Any CPU
+		{734681CE-E311-4E8F-AF4C-E4AA3881CA48}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{734681CE-E311-4E8F-AF4C-E4AA3881CA48}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
